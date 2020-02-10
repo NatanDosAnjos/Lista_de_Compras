@@ -47,7 +47,10 @@ public class MainActivity extends AppCompatActivity {
         btnRemove               = findViewById(R.id.imageButtonRemove);
         editTextPreco           = findViewById(R.id.editTextPreco);
 
+        configurarRecycle();
+    }
 
+    public void configurarRecycle() {
         //Configurando Adapter
         adaptador = new AdapterProdutos(produto);
 
@@ -57,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewComponent.setAdapter(adaptador);
         recyclerViewComponent.setHasFixedSize(true);
         //recyclerViewComponent.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
-
     }
 
     public static boolean isNumeric(String str) {
@@ -96,10 +98,10 @@ public class MainActivity extends AppCompatActivity {
             produto.setPrice(preco);
             produto.setTotal(produto.addOneProduct());
             this.produto.add(produto);
+            configurarRecycle();
             Toast.makeText(getApplicationContext(), nomeProduto + " adicionado", Toast.LENGTH_SHORT).show();
             editTextProduto.setText("");
             editTextPreco.setText("");
-            adaptador = new AdapterProdutos(this.produto);
 
         } else {
             Toast.makeText(getApplicationContext(), "Digite o nome do Produto", Toast.LENGTH_SHORT).show();
@@ -112,18 +114,19 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i =0; i < this.produto.size(); i++) {
             produtoComparacao = produto.get(i);
+            System.out.println("Valor de i:" + i);
             if (produtoComparacao.getName().equals(nomeProduto)) {
-                produto.remove(i);
-                Toast.makeText(getApplicationContext(), "Produto Removido", Toast.LENGTH_SHORT).show();
+                System.out.println("If: " + produto.size());
                 editTextProduto.setText("");
                 editTextPreco.setText("");
-                adaptador = new AdapterProdutos(this.produto);
-
-            } else {
-                Toast.makeText(getApplicationContext(), "Produto não existe", Toast.LENGTH_LONG).show();
+                produto.remove(i);
+                configurarRecycle();
+                Toast.makeText(getApplicationContext(), "Produto Removido", Toast.LENGTH_SHORT).show();
+                return;
             }
 
-            //Toast.makeText(getApplicationContext(), "Ainda Não Implementado", Toast.LENGTH_SHORT).show();
         }
+        System.out.println("Else: " + produto.size());
+        Toast.makeText(getApplicationContext(), "Produto não existe", Toast.LENGTH_LONG).show();
     }
 }
