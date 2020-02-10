@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">ListaDeCompras</string>
+    <string name="app_name">Lista De Compras</string>
+    <string name="adicionar">Mais Um</string>
+    <string name="remove">Menos Um</string>
+    <string name="nomeProduto">Nome do Produto</string>
+    <string name="qtd">Quantidade</string>
+    <string name="hint">Qtd</string>
+    <string name="hintProduto">Produto</string>
+    <string name="preco">Preço ex: 1.99</string>
 </resources>
