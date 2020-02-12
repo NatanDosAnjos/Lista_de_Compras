@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:configChanges="orientation"
     tools:context=".activies.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -19,8 +20,9 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,60 +30,91 @@
         app:layout_constraintTop_toBottomOf="@+id/recycleViewComponent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/linearLayoutHorizontal1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/editTextNome"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_weight="5"
                 android:autofillHints="@string/hint"
                 android:ems="10"
                 android:hint="@string/hintProduto"
+                android:imeOptions="actionNext"
                 android:importantForAutofill="no"
                 android:inputType="textShortMessage|text"
+                android:nextFocusLeft="@id/imageButtonRemove"
+                android:nextFocusRight="@id/editTextPreco"
+                android:nextFocusDown="@id/imageButtonAdd"
+                android:nextFocusForward="@id/editTextPreco"
                 tools:text="Produto" />
 
             <EditText
                 android:id="@+id/editTextPreco"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:autofillHints=""
                 android:ems="10"
                 android:hint="@string/preco"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:nextFocusLeft="@id/editTextNome"
+                android:nextFocusDown="@id/imageButtonRemove"
+                android:nextFocusForward="@id/imageButtonAdd" />
+
         </LinearLayout>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
         <LinearLayout
+            android:id="@+id/layoutBtns"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/imageButtonAdd"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="5"
                 android:background="@color/backgroundColor"
                 android:backgroundTint="@android:color/white"
                 android:contentDescription="@string/adicionar"
+                android:nextFocusLeft="@id/editTextPreco"
+                android:nextFocusRight="@id/imageButtonRemove"
+                android:nextFocusUp="@id/editTextNome"
+                android:nextFocusForward="@id/imageButtonRemove"
                 android:onClick="addProduto"
                 android:src="@drawable/ic_add_circle_16dp" />
 
             <ImageButton
                 android:id="@+id/imageButtonRemove"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="5"
                 android:background="@android:color/white"
                 android:backgroundTint="@android:color/white"
                 android:contentDescription="@string/remove"
+                android:nextFocusLeft="@id/imageButtonAdd"
+                android:nextFocusRight="@id/editTextNome"
+                android:nextFocusUp="@id/editTextPreco"
+                android:nextFocusForward="@id/editTextNome"
                 android:onClick="removeProduto"
                 android:src="@drawable/ic_remove_circle_16dp" />
         </LinearLayout>
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
